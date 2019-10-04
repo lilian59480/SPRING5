@@ -38,6 +38,16 @@ public class TeacherService {
         return this.fromModelToDto(model);
     }
 
+    public void save(TeacherDto teacherDto) {
+        TeacherModel model = this.fromDtoToModel(teacherDto);
+        this.teacherRepository.save(model);
+        teacherDto.setId(model.getId());
+    }
+
+    private TeacherModel fromDtoToModel(TeacherDto dto) {
+        return new TeacherModel(dto.getId(), dto.getFirstName(), dto.getLastName(), dto.getSubject());
+    }
+
     private TeacherDto fromModelToDto(TeacherModel model) {
         return new TeacherDto(model.getId(), model.getFirstName(), model.getLastName(), model.getSubject());
     }

@@ -4,6 +4,7 @@ import com.spring.demo.model.TeacherModel;
 import com.spring.demo.repository.TeacherRepository;
 import java.util.Arrays;
 import java.util.List;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Repository;
  * @author Lilian Petitpas <lilian.petitpas@outlook.com>
  */
 @Repository()
+@ConditionalOnProperty(name = "demo.repository", havingValue = "mock")
 public class InMemoryTeacherRepository implements TeacherRepository {
 
     private static final List<TeacherModel> TEACHER = Arrays.asList(
@@ -30,6 +32,11 @@ public class InMemoryTeacherRepository implements TeacherRepository {
         return InMemoryTeacherRepository.TEACHER.stream().filter((t) -> {
             return t.getId() == id;
         }).findFirst().orElse(null);
+    }
+
+    @Override
+    public void save(TeacherModel teacher) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
 }

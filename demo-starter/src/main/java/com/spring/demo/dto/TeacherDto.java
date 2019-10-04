@@ -19,6 +19,9 @@ public class TeacherDto {
         this.subject = subject;
     }
 
+    public TeacherDto() {
+    }
+
     public int getId() {
         return id;
     }

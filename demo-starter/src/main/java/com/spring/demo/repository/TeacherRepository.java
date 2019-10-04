@@ -25,4 +25,10 @@ public interface TeacherRepository {
      */
     TeacherModel findById(int id);
 
+    /**
+     * Save a new teacher
+     *
+     * @param teacher A new teacher
+     */
+    void save(TeacherModel teacher);
 }
